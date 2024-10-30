@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?> 
+<score bpm="150" beatspermeasure="4">
+
+    <instrument instrument="AdditiveSynth">
+
+        <!-- Part 1: Harmonic Demonstration -->
+        <!-- Measures 1-4: String instrument (all harmonics) -->
+        <note measure="1" beat="1" duration="4" note="C4" harmonics="1 0.9 0.7 0.5 0.3"/>
+        <note measure="2" beat="1" duration="4" note="E4" harmonics="1 0.9 0.7 0.5 0.3"/>
+        <note measure="3" beat="1" duration="4" note="G4" harmonics="1 0.9 0.7 0.5 0.3"/>
+        <note measure="4" beat="1" duration="4" note="C5" harmonics="1 0.9 0.7 0.5 0.3"/>
+
+        <!-- Measures 5-8: Tube instrument (odd harmonics) -->
+        <note measure="5" beat="1" duration="4" note="Bb3" harmonics="1 0 0.7 0 0.3"/>
+        <note measure="6" beat="1" duration="4" note="D4" harmonics="1 0 0.7 0 0.3"/>
+        <note measure="7" beat="1" duration="4" note="F4" harmonics="1 0 0.7 0 0.3"/>
+        <note measure="8" beat="1" duration="4" note="A4" harmonics="1 0 0.7 0 0.3"/>
+
+        <!-- Part 2: Glissando Demonstration -->
+        <!-- Measures 9-10: String instrument (glissando) -->
+        <note measure="9" beat="1" duration="4" note="C4" glissandoNote="G4" harmonics="1 0.9 0.7 0.5 0.3"/>
+        <note measure="10" beat="1" duration="4" note="E4" glissandoNote="C5" harmonics="1 0.9 0.7 0.5 0.3"/>
+
+        <!-- Measures 11-12: Tube instrument (glissando) -->
+        <note measure="11" beat="1" duration="4" note="Bb3" glissandoNote="F4" harmonics="1 0 0.7 0 0.3"/>
+        <note measure="12" beat="1" duration="4" note="D4" glissandoNote="A4" harmonics="1 0 0.7 0 0.3"/>
+
+        <!-- Part 3: ADSR Envelope Demonstration -->
+        <!-- Measures 13-14: String instrument with distinct ADSR -->
+        <note measure="13" beat="1" duration="4" note="A4" harmonics="1 0.9 0.7 0.5 0.3"
+              attack="0.2" decay="0.2" sustainLevel="0.5" release="0.3"/>
+        <note measure="14" beat="1" duration="4" note="D4" harmonics="1 0.9 0.7 0.5 0.3"
+              attack="0.1" decay="0.1" sustainLevel="0.6" release="0.3"/>
+
+        <!-- Measures 15-16: Tube instrument with distinct ADSR -->
+        <note measure="15" beat="1" duration="4" note="G3" harmonics="1 0 0.7 0 0.3"
+              attack="0.3" decay="0.2" sustainLevel="0.5" release="0.3"/>
+        <note measure="16" beat="1" duration="4" note="F4" harmonics="1 0 0.7 0 0.3"
+              attack="0.1" decay="0.1" sustainLevel="0.6" release="0.2"/>
+
+        <!-- Part 4: Cross-Fading Demonstration -->
+        <!-- Measures 17-18: String instrument cross-fading -->
+        <note measure="17" beat="1" duration="4" note="G4"
+              startHarmonics="1 0.9 0.7 0.5 0.3" endHarmonics="0.3 0.5 0.7 0.9 1.0"/>
+        <note measure="18" beat="1" duration="4" note="C5"
+              startHarmonics="1 0.8 0.6 0.4 0.2" endHarmonics="0.4 0.6 0.8 1.0 1.2"/>
+
+        <!-- Measures 19-20: Tube instrument cross-fading -->
+        <note measure="19" beat="1" duration="4" note="Bb3"
+              startHarmonics="1 0 0.7 0 0.3" endHarmonics="0.2 0 0.4 0 0.6"/>
+        <note measure="20" beat="1" duration="4" note="F4"
+              startHarmonics="1 0 0.7 0 0.3" endHarmonics="0.2 0 0.4 0 0.6"/>
+
+        <!-- Part 5: Combination of all features -->
+        <!-- Measures 21-24: All effects combined with polyphony -->
+        <note measure="21" beat="1" duration="4" note="A4" glissandoNote="E4"
+              startHarmonics="1 0.9 0.7 0.5 0.3" endHarmonics="0.2 0.4 0.6 0.8 1.0"
+              attack="0.2" decay="0.2" sustainLevel="0.6" release="0.3"/>
+        <note measure="21" beat="1" duration="4" note="D5" glissandoNote="C5"
+              startHarmonics="1 0.8 0.6 0.4 0.2" endHarmonics="0.4 0.6 0.8 1.0 1.2"
+              attack="0.1" decay="0.1" sustainLevel="0.5" release="0.3"/>
+
+        <note measure="23" beat="1" duration="4" note="G4" glissandoNote="D4"
+              startHarmonics="1 0 0.7 0 0.3" endHarmonics="0.3 0 0.6 0 0.9"
+              attack="0.3" decay="0.2" sustainLevel="0.5" release="0.3"/>
+        <note measure="23" beat="1" duration="4" note="Bb4" glissandoNote="F4"
+              startHarmonics="1 0 0.7 0 0.3" endHarmonics="0.2 0 0.4 0 0.6"
+              attack="0.2" decay="0.2" sustainLevel="0.6" release="0.3"/>
+
+        <!-- Measure 25-26: Sustained final note with slow cross-fading -->
+        <note measure="25" beat="1" duration="8" note="C4"
+              startHarmonics="1 0.9 0.7 0.5 0.3" endHarmonics="0.3 0.5 0.7 0.9 1.0"
+              attack="0.5" decay="0.4" sustainLevel="0.6" release="0.5"/>
+              
+    </instrument>
+
+</score>

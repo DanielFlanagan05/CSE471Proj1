@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?> 
+<score bpm="120" beatspermeasure="2">
+    <instrument instrument="AdditiveSynth">
+        <!-- Measure 1: Two notes playing simultaneously (polyphony) -->
+        <note measure="1" beat="1" duration="0.5" note="Bb4" harmonics="1 0.8 0.6 0.4 0.2"/>
+        <note measure="1" beat="1" duration="0.5" note="D4" harmonics="1 0.8 0.6 0.4 0.2"/>
+
+        <!-- Measure 2: More polyphony with slightly offset notes -->
+        <note measure="2" beat="1" duration="0.5" note="Bb4" harmonics="1 0.8 0.6 0.4 0.2"/>
+        <note measure="2" beat="1.25" duration="0.5" note="F4" harmonics="1 0.8 0.6 0.4 0.2"/>
+
+        <!-- Measure 3: Another polyphonic section with different harmonic structure -->
+        <note measure="3" beat="1" duration="0.5" note="Bb4" harmonics="1 0.7 0.5 0.3 0.1"/>
+        <note measure="3" beat="1.5" duration="1" note="Eb4" harmonics="1 0.7 0.5 0.3 0.1"/>
+
+        <!-- Measure 4: Continuing with polyphony -->
+        <note measure="4" beat="1" duration="0.5" note="Bb4" harmonics="1 0.7 0.5 0.3 0.1"/>
+        <note measure="4" beat="1" duration="1" note="G4" harmonics="1 0.7 0.5 0.3 0.1"/>
+
+        <!-- Measure 5: Polyphony with rapid note changes and overlap -->
+        <note measure="5" beat="1" duration="0.5" note="G4" harmonics="1 0.6 0.4 0.2 0.1"/>
+        <note measure="5" beat="1" duration="0.5" note="C4" harmonics="1 0.6 0.4 0.2 0.1"/>
+        <note measure="5" beat="1.5" duration="0.5" note="F#4" harmonics="1 0.6 0.4 0.2 0.1"/>
+        <note measure="5" beat="2" duration="0.5" note="G4" harmonics="1 0.6 0.4 0.2 0.1"/>
+        <note measure="5" beat="2.5" duration="0.5" note="G#4" harmonics="1 0.6 0.4 0.2 0.1"/>
+
+        <!-- Measure 6: Two simultaneous notes with different harmonic structures -->
+        <note measure="6" beat="1" duration="1" note="A4" harmonics="1 0.9 0.7 0.5 0.3"/>
+        <note measure="6" beat="1" duration="1" note="E4" harmonics="1 0.9 0.7 0.5 0.3"/>
+        <note measure="6" beat="2" duration="1" note="F4" harmonics="1 0.9 0.7 0.5 0.3"/>
+
+        <!-- Measure 7: Long sustained note over 3 beats -->
+        <note measure="7" beat="1" duration="3" note="Bb4" harmonics="1 0.8 0.6 0.4 0.2"/>
+        <note measure="7" beat="1.5" duration="2.5" note="F4" harmonics="1 0.8 0.6 0.4 0.2"/>
+
+        <!-- Measure 8: Final polyphonic chord at the end -->
+        <note measure="8" beat="1" duration="1" note="G4" harmonics="1 0.8 0.6 0.4 0.2"/>
+        <note measure="8" beat="1" duration="1" note="B4" harmonics="1 0.8 0.6 0.4 0.2"/>
+        <note measure="8" beat="1" duration="1" note="D5" harmonics="1 0.8 0.6 0.4 0.2"/>
+    </instrument>
+</score>

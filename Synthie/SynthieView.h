@@ -65,5 +65,6 @@ private:
 public:
 	afx_msg void OnGenerateSynthesizer();
 	afx_msg void OnFileOpenscore();
+	afx_msg void OnGenerateAdditivesynthesizer();
 };
 

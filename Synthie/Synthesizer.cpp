@@ -5,6 +5,7 @@
 #include "xmlhelp.h"
 #include <vector>
 #include <algorithm>
+#include <AdditiveSynth.h>
 
 CSynthesizer::CSynthesizer()
 : m_time(0)
@@ -83,6 +84,18 @@ bool CSynthesizer::Generate(double * frame)
 		{
 			instrument = new CToneInstrument(GetBeatsPerMinute());
 		}
+
+		if (note->Instrument() == L"AdditiveSynth")
+		{
+			CAdditiveSynth* additive = new CAdditiveSynth(GetBeatsPerMinute());
+			additive->SetSampleRate(GetSampleRate());
+			additive->SetNote(note);
+			additive->Start();
+			m_instruments.push_back(additive);
+		}
+
+
+
 
 		// Configure the instrument object
 		if (instrument != NULL)

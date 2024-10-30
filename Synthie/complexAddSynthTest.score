@@ -1,0 +1,51 @@
+<score bpm="120" beatspermeasure="4">
+    <instrument instrument="AdditiveSynth">
+        <!-- Note 1: A glissando from A4 to C5 with harmonic cross-fading -->
+        <note measure="1" beat="1" duration="2" note="A4" glissandoNote="C5"
+              harmonics="1.0 0.8 0.6 0.4 0.2" endHarmonics="0.2 0.4 0.6 0.8 1.0"
+              attack="0.1" decay="0.2" sustainLevel="0.7" release="0.3"/>
+        
+        <!-- Note 2: Starts at the same time as Note 1 to test polyphony -->
+        <note measure="1" beat="1" duration="2" note="E4"
+              harmonics="1.0 0.5 0.25" endHarmonics="0.25 0.5 1.0"
+              attack="0.05" decay="0.1" sustainLevel="0.8" release="0.2"/>
+
+        <!-- Note 3: Overlaps with Note 1 and 2, starting slightly later -->
+        <note measure="1" beat="1.5" duration="2.5" note="C4" glissandoNote="G4"
+              harmonics="1.0 0.6 0.3" endHarmonics="0.3 0.6 1.0"
+              attack="0.08" decay="0.15" sustainLevel="0.6" release="0.25"/>
+
+        <!-- Note 4: A longer note to test sustained envelope -->
+        <note measure="1" beat="2" duration="4" note="F4"
+              harmonics="1.0 0.7 0.5 0.3 0.1"
+              attack="0.2" decay="0.3" sustainLevel="0.5" release="0.4"/>
+        
+        <!-- Note 5: A quick note to test short duration and envelope scaling -->
+        <note measure="1" beat="3" duration="0.5" note="B3"
+              harmonics="1.0 0.5"
+              attack="0.05" decay="0.05" sustainLevel="0.9" release="0.05"/>
+        
+        <!-- Note 6: Overlapping note with a glissando downwards -->
+        <note measure="1" beat="3.5" duration="2" note="D5" glissandoNote="A4"
+              harmonics="1.0 0.7 0.4" endHarmonics="0.4 0.7 1.0"
+              attack="0.1" decay="0.2" sustainLevel="0.6" release="0.3"/>
+
+        <!-- Note 7: Starts in the next measure to test measure advancement -->
+        <note measure="2" beat="1" duration="3" note="G4"
+              harmonics="1.0 0.9 0.8 0.7 0.6 0.5"
+              attack="0.15" decay="0.25" sustainLevel="0.7" release="0.35"/>
+        
+        <!-- Note 8: Simultaneous notes with different durations and envelopes -->
+        <note measure="2" beat="1" duration="1.5" note="E4"
+              harmonics="1.0 0.5 0.3"
+              attack="0.1" decay="0.2" sustainLevel="0.8" release="0.2"/>
+        <note measure="2" beat="1.5" duration="1" note="C4"
+              harmonics="1.0 0.6 0.4"
+              attack="0.08" decay="0.15" sustainLevel="0.6" release="0.25"/>
+
+        <!-- Note 9: Testing a note with a very long duration and slow envelope -->
+        <note measure="2" beat="2" duration="6" note="A3"
+              harmonics="1.0 0.7 0.5"
+              attack="0.5" decay="0.5" sustainLevel="0.5" release="0.5"/>
+    </instrument>
+</score>

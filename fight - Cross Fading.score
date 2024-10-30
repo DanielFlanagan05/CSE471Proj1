@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?> 
+<score bpm="120" beatspermeasure="2">
+    <instrument instrument="AdditiveSynth">
+
+        <!-- Measure 1: Simple note with no cross-fading (baseline for comparison) -->
+        <note measure="1" beat="1" duration="0.5" note="Bb4" harmonics="1 0.8 0.6 0.4 0.2"/>
+
+        <!-- Measure 2: Cross-fading example (Bb4 starts with one set of harmonics, fades to another) -->
+        <note measure="2" beat="1" duration="0.5" note="Bb4" 
+              startHarmonics="1 0.8 0.6 0.4 0.2" endHarmonics="0.2 0.4 0.6 0.8 1.0"/>
+
+        <!-- Measure 3: A new set of harmonics, no cross-fading here -->
+        <note measure="3" beat="1" duration="0.5" note="Bb4" harmonics="1 0.7 0.5 0.3 0.1"/>
+        <note measure="3" beat="2" duration="0.5" note="Bb4" harmonics="1 0.7 0.5 0.3 0.1"/>
+
+        <!-- Measure 4: Cross-fading again on Bb4 -->
+        <note measure="4" beat="1" duration="1" note="Bb4" 
+              startHarmonics="1 0.7 0.5 0.3 0.1" endHarmonics="0.1 0.3 0.5 0.7 1.0"/>
+
+        <!-- Measure 5: Cross-fading multiple notes (G4 -> F#4, G4 -> G#4) -->
+        <note measure="5" beat="1" duration="1" note="G4"
+              startHarmonics="1 0.6 0.4 0.2 0.1" endHarmonics="0.2 0.4 0.6 0.8 1.0"/>
+        <note measure="5" beat="2" duration="1" note="F#4"
+              startHarmonics="1 0.6 0.4 0.2 0.1" endHarmonics="0.2 0.5 0.7 1.0 1.0"/>
+        <note measure="5" beat="2.5" duration="0.5" note="G#4" 
+              startHarmonics="1 0.6 0.4 0.2 0.1" endHarmonics="0.3 0.6 0.9 1.0 1.0"/>
+
+        <!-- Measure 6: Cross-fading on longer notes -->
+        <note measure="6" beat="1" duration="1" note="A4" 
+              startHarmonics="1 0.9 0.7 0.5 0.3" endHarmonics="0.3 0.5 0.7 0.9 1.0"/>
+        <note measure="6" beat="2" duration="1" note="F4"
+              startHarmonics="1 0.9 0.7 0.5 0.3" endHarmonics="0.2 0.4 0.6 0.8 1.0"/>
+
+        <!-- Measure 7: A sustained note with slow cross-fading -->
+        <note measure="7" beat="1" duration="3" note="Bb4" 
+              startHarmonics="1 0.8 0.6 0.4 0.2" endHarmonics="0.2 0.4 0.6 0.8 1.0"/>
+
+    </instrument>
+</score>

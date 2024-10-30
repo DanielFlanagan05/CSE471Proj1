@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<score bpm="120" beatspermeasure="4">
+    <instrument instrument="AdditiveSynth">
+        <!-- Part 1: Non-overlapping notes (no polyphony) -->
+        <note measure="1" beat="1" duration="1" note="C4" harmonics="1 0.8 0.6 0.4 0.2"/>
+        <note measure="1" beat="2" duration="1" note="E4" harmonics="1 0.8 0.6 0.4 0.2"/>
+        <note measure="1" beat="3" duration="1" note="G4" harmonics="1 0.8 0.6 0.4 0.2"/>
+        <note measure="1" beat="4" duration="1" note="C5" harmonics="1 0.8 0.6 0.4 0.2"/>
+
+        <!-- Part 2: Overlapping notes (polyphony) -->
+        <!-- C4 and E4 overlapping -->
+        <note measure="2" beat="1" duration="2" note="C4" harmonics="1 0.8 0.6 0.4 0.2"/>
+        <note measure="2" beat="1.5" duration="1.5" note="E4" harmonics="1 0.8 0.6 0.4 0.2"/>
+        
+        <!-- G4 and C5 overlapping -->
+        <note measure="2" beat="3" duration="2" note="G4" harmonics="1 0.8 0.6 0.4 0.2"/>
+        <note measure="2" beat="3.5" duration="1.5" note="C5" harmonics="1 0.8 0.6 0.4 0.2"/>
+    </instrument>
+</score>
