@@ -1,21 +1,25 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "Synthesizer.h"
 #include "Instrument.h"
 #include "ToneInstrument.h"
+#include "WavetableInstrument.h"
 #include "xmlhelp.h"
 #include <vector>
 #include <algorithm>
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 
 CSynthesizer::CSynthesizer()
-: m_time(0)
+	: m_time(0)
 {
 	CoInitialize(NULL);
 	m_channels = 2;
 	m_sampleRate = 44100.;
 	m_samplePeriod = 1 / m_sampleRate;
-	m_bpm = 120;            
+	m_bpm = 120;
 	m_beatspermeasure = 4;
-	m_secperbeat = 0.5;     
+	m_secperbeat = 0.5;
 }
 
 
@@ -41,7 +45,7 @@ void CSynthesizer::Start()
 }
 
 
-bool CSynthesizer::Generate(double * frame)
+bool CSynthesizer::Generate(double* frame)
 {
 	/*double sample = 0.1 * sin(2 * PI * 440 * GetTime());
 
@@ -60,7 +64,7 @@ bool CSynthesizer::Generate(double * frame)
 	while (m_currentNote < (int)m_notes.size())
 	{
 		// Get a pointer to the current note
-		CNote *note = &m_notes[m_currentNote];
+		CNote* note = &m_notes[m_currentNote];
 
 		// If the measure is in the future we can't play
 		// this note just yet.
@@ -78,10 +82,35 @@ bool CSynthesizer::Generate(double * frame)
 		//
 
 		// Create the instrument object
-		CInstrument *instrument = NULL;
+		CInstrument* instrument = NULL;
 		if (note->Instrument() == L"ToneInstrument")
 		{
 			instrument = new CToneInstrument(GetBeatsPerMinute());
+		}
+
+		
+		else if (note->Instrument() == L"WavetableInstrument") {
+			auto* wavetable = new CWavetableInstrument();
+			wavetable->SetSampleRate(GetSampleRate());
+
+			// Set different waveforms based on note duration
+			if (note->GetDuration() > 1.0) {
+				// Longer notes get both long attack and sustain waveforms
+				wavetable->SetAttackWaveform(sineWave(1000));   // Attack: 1000 samples
+				wavetable->SetSustainWaveform(sineWave(44100)); // Sustain: 1 second
+			}
+			else {
+				// Shorter notes use smaller waveforms for both attack and sustain
+				wavetable->SetAttackWaveform(sineWave(500));    // Attack: 500 samples
+				wavetable->SetSustainWaveform(sineWave(4410));  // Sustain: ~0.1 seconds
+			}
+
+			// Set note properties and start playback
+			wavetable->SetNote(note);
+			wavetable->Start();
+
+			// Assign the wavetable instrument to the instrument pointer
+			instrument = wavetable;
 		}
 
 		// Configure the instrument object
@@ -100,7 +129,7 @@ bool CSynthesizer::Generate(double * frame)
 	// Phase 2: Clear all channels to silence 
 	//
 
-	for (int c = 0; c<GetNumChannels(); c++)
+	for (int c = 0; c < GetNumChannels(); c++)
 	{
 		frame[c] = 0;
 	}
@@ -116,22 +145,22 @@ bool CSynthesizer::Generate(double * frame)
 	// returns false), we remove it from the list.
 	//
 
-	for (list<CInstrument *>::iterator node = m_instruments.begin(); node != m_instruments.end();)
+	for (list<CInstrument*>::iterator node = m_instruments.begin(); node != m_instruments.end();)
 	{
 		// Since we may be removing an item from the list, we need to know in 
 		// advance, what is after it in the list.  We keep that node as "next"
-		list<CInstrument *>::iterator next = node;
+		list<CInstrument*>::iterator next = node;
 		next++;
 
 		// Get a pointer to the allocated instrument
-		CInstrument *instrument = *node;
+		CInstrument* instrument = *node;
 
 		// Call the generate function
 		if (instrument->Generate())
 		{
 			// If we returned true, we have a valid sample.  Add it 
 			// to the frame.
-			for (int c = 0; c<GetNumChannels(); c++)
+			for (int c = 0; c < GetNumChannels(); c++)
 			{
 				frame[c] += instrument->Frame(c);
 			}
@@ -188,7 +217,7 @@ void CSynthesizer::Clear()
 	m_instruments.clear();
 	m_notes.clear();
 }
-void CSynthesizer::XmlLoadScore(IXMLDOMNode * xml)
+void CSynthesizer::XmlLoadScore(IXMLDOMNode* xml)
 {
 	// Get a list of all attribute nodes and the
 	// length of that list
@@ -198,7 +227,7 @@ void CSynthesizer::XmlLoadScore(IXMLDOMNode * xml)
 	attributes->get_length(&len);
 
 	// Loop over the list of attributes
-	for (int i = 0; i<len; i++)
+	for (int i = 0; i < len; i++)
 	{
 		// Get attribute i
 		CComPtr<IXMLDOMNode> attrib;
@@ -244,7 +273,7 @@ void CSynthesizer::XmlLoadScore(IXMLDOMNode * xml)
 		}
 	}
 }
-void CSynthesizer::OpenScore(CString & filename)
+void CSynthesizer::OpenScore(CString& filename)
 {
 	Clear();
 
@@ -289,7 +318,7 @@ void CSynthesizer::OpenScore(CString & filename)
 	}
 	sort(m_notes.begin(), m_notes.end());
 }
-void CSynthesizer::XmlLoadInstrument(IXMLDOMNode * xml)
+void CSynthesizer::XmlLoadInstrument(IXMLDOMNode* xml)
 {
 	wstring instrument = L"";
 
@@ -301,7 +330,7 @@ void CSynthesizer::XmlLoadInstrument(IXMLDOMNode * xml)
 	attributes->get_length(&len);
 
 	// Loop over the list of attributes
-	for (int i = 0; i<len; i++)
+	for (int i = 0; i < len; i++)
 	{
 		// Get attribute i
 		CComPtr<IXMLDOMNode> attrib;
@@ -337,8 +366,52 @@ void CSynthesizer::XmlLoadInstrument(IXMLDOMNode * xml)
 	}
 
 }
-void CSynthesizer::XmlLoadNote(IXMLDOMNode * xml, std::wstring & instrument)
+void CSynthesizer::XmlLoadNote(IXMLDOMNode* xml, std::wstring& instrument)
 {
+	// Add a new note to the list
 	m_notes.push_back(CNote());
-	m_notes.back().XmlLoad(xml, instrument);
+	CNote& note = m_notes.back();  // Reference to the newly added note
+	note.XmlLoad(xml, instrument);  // Load the note from XML
+
+	// Initialize the appropriate instrument
+	CInstrument* instr = nullptr;
+
+	if (instrument == L"ToneInstrument") {
+		// Create a new ToneInstrument
+		instr = new CToneInstrument(GetBeatsPerMinute());
+	}
+	else if (instrument == L"WavetableInstrument") {
+    auto* wavetable = new CWavetableInstrument();
+    wavetable->SetSampleRate(GetSampleRate());
+
+    // Configure the attack and sustain waveforms dynamically
+    if (note.GetDuration() > 1.0) {
+        // Longer notes
+        wavetable->SetAttackWaveform(sineWave(1000));    // Short attack phase
+        wavetable->SetSustainWaveform(sineWave(44100));  // Long sustain phase
+    } else {
+        // Shorter notes
+        wavetable->SetAttackWaveform(sineWave(500));     // Shorter attack
+        wavetable->SetSustainWaveform(sineWave(4410));   // Short sustain
+    }
+
+    // Configure the note and start playback
+    wavetable->SetNote(&note);
+    wavetable->Start();
+    instr = wavetable;
+}
+
+	// Add the created instrument to the list if it was successfully created
+	if (instr != nullptr) {
+		m_instruments.push_back(instr);
+	}
+}
+
+
+std::vector<double> CSynthesizer::sineWave(int samples) {
+	std::vector<double> waveform(samples);
+	for (int i = 0; i < samples; ++i) {
+		waveform[i] = sin(2 * M_PI * i / samples); // Generate sine wave sample
+	}
+	return waveform;
 }

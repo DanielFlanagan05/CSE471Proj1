@@ -48,3 +48,7 @@ bool CAR::Generate()
 	// We return true until the time reaches the duration.
 	return m_time < m_duration;
 }
+
+double CAR::GetReleaseTime() const {
+	return m_release;  
+}

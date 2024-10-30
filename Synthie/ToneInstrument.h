@@ -1,4 +1,5 @@
 #pragma once
+#include "stdafx.h"
 #include "Instrument.h"
 #include "SineWave.h"
 #include "AR.h"

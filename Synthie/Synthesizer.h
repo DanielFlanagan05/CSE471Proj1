@@ -30,10 +30,12 @@ public:
 	void SetSampleRate(double s) { m_sampleRate = s;  m_samplePeriod = 1.0 / s; }
 
 	void Clear();
-	void OpenScore(CString & );
-	void XmlLoadScore(IXMLDOMNode * xml);
-	void XmlLoadInstrument(IXMLDOMNode * xml);
-	void XmlLoadNote(IXMLDOMNode * xml, std::wstring & instrument);
+	void OpenScore(CString&);
+	void XmlLoadScore(IXMLDOMNode* xml);
+	void XmlLoadInstrument(IXMLDOMNode* xml);
+	void XmlLoadNote(IXMLDOMNode* xml, std::wstring& instrument);
+	int FindLoopStart(const std::vector<double>& waveform);
+	int FindLoopEnd(const std::vector<double>& waveform);
 private:
 	int		m_channels;
 	double	m_sampleRate;
@@ -44,11 +46,12 @@ private:
 	int m_currentNote;          //!< The current note we are playing
 	int m_measure;              //!< The current measure
 	double m_beat;              //!< The current beat within the measure
-	std::list<CInstrument *>  m_instruments;
+	std::list<CInstrument*>  m_instruments;
 	std::vector<CNote> m_notes;
 public:
 	void Start();
 	bool Generate(double*);
+	static std::vector<double> sineWave(int samples);
 private:
 	double m_time;
 public:
